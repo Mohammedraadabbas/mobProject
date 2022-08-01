@@ -48,7 +48,7 @@ img {
 }
 
 .container {
-  --padding: 5rem;
+  --padding: 4rem;
   width: min(1200px, calc(100% - var(--padding)));
   margin-inline: auto;
 }
