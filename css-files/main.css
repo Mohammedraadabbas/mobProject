@@ -33,14 +33,18 @@
   width: min(1200px , 100% - var(--padding) );
   /* min-height: 100vh; */
   margin: 0 auto;
-overflow-x: hidden;
 }
+
+html {
+overflow-x: hidden;
+} 
 
 body {
   overflow-x: hidden;
   font-family: "Cairo", sans-serif;
   line-height: 1.4;
   height: 200vh;
+width : 100vw;
 }
 
 a {
