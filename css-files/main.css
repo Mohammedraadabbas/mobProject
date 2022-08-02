@@ -33,6 +33,7 @@
   width: min(1200px , 100% - var(--padding) );
   /* min-height: 100vh; */
   margin: 0 auto;
+overflow-x: hidden;
 }
 
 body {
