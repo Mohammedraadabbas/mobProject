@@ -388,7 +388,7 @@ a {
   width: 300px;
   height: 100%;
   top: 80%;
-  right: -50%;
+  right: -100%;
   text-align: center;
   opacity: 0;
   transition: .5s ease;
