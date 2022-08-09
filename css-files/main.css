@@ -17,6 +17,8 @@
     rgba(101, 71, 231) 99.48%
   );
   --memberBg: radial-gradient(50% 50% at 50% 50%, #ffbe02 0%, #ffffff 58.85%);
+  --padding-top:1.25rem;
+  --padding-bottom:1.25rem;
 }
 
 /* =====globle style===== */
@@ -35,8 +37,8 @@ body {
   overflow-x: hidden;
   font-family: "Cairo", sans-serif;
   line-height: 1.4;
-  height: 1000vh;
-  width: 100vw;
+  /* height: 1000vh; */
+  /* width: 100vw; */
   overflow-y: hidden;
 }
 
@@ -61,8 +63,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-block: 1rem;
-  /* position: relative; */
+  height: 75px;
 }
 
 .header .menu {
@@ -91,11 +92,10 @@ a {
 }
 
 .home .container {
-  padding-top: 3rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
-  min-height: 90vh;
+  height: calc(100vh - 75px);
 }
 
 .home .container > div {
@@ -128,7 +128,6 @@ a {
   color: #ffffff;
   font-size: 1.1rem;
 }
-
 .home .homeLinks {
   margin-top: 1rem;
   display: flex;
@@ -136,21 +135,10 @@ a {
   align-items: center;
   flex-wrap: wrap;
 }
-
 .home .homeLinks a {
   display: inline;
   font-weight: bold;
-  /* border-radius: 20px; */
 }
-
-/* .home .homeLinks a:first-child {
-  background-color: var(--firstColor);
-  color: var(--thirdColor);
-  
-  font-size: 1.1rem;
-  font-weight: 400;
-} */
-
 .bn47 {
   font-size: 0.7rem;
   position: relative;
@@ -268,7 +256,8 @@ a {
 
 .about-us .container {
   min-height: 100vh;
-  padding-top: 1rem;
+  padding-top: var(--padding-top);
+  padding-bottom: var(--padding-bottom);
   text-align: center;
 }
 
@@ -284,7 +273,8 @@ a {
 /* ===== services ===== */
 
 .services .container {
-  padding-top: 5rem;
+  padding-top: var(--padding-top);
+  padding-bottom: var(--padding-bottom);
   min-height: 100vh;
   position: relative;
 }
@@ -327,7 +317,7 @@ a {
   height: 400px;
   overflow-y: auto;
   position: absolute;
-  top: 30%;
+  /* top: 30%; */
   right: 47%;
   padding: 0 1rem;
   scroll-snap-type: x;
@@ -402,7 +392,8 @@ a {
 /* ===== members ===== */
 
 .members {
-  margin-top: 4rem;
+  /* margin-top: 4rem; */
+
   position: relative;
   overflow: hidden;
 }
@@ -420,6 +411,8 @@ a {
   justify-content: center;
   background: var(--memberBg);
   position: relative;
+  padding-top: var(--padding-top);
+  padding-bottom: var(--padding-bottom);
 }
 
 .members .container .logo {
@@ -532,7 +525,6 @@ a {
 .member .member-img-container img {
   width: 50%;
   position: absolute;
-  /* transition: .5s  ease; */
 }
 
 .member .member-con .member-img-container img:first-child {
@@ -580,7 +572,6 @@ a {
 }
 
 .members .container .member-info.active {
-  /* transform: translate(-2%,40%); */
   transition: 0.5s ease;
   opacity: 1;
 }
@@ -588,7 +579,6 @@ a {
 .members .container .member-info h4 {
   font-size: 3.125rem;
   font-weight: 700;
-  /* transform: translatex(-2%,40%); */
 }
 
 .members .container .member-info p:first-of-type {
@@ -605,13 +595,19 @@ a {
 /* ===== contact us ===== */
 
 .contact-us {
-  margin-top: 50px;
-  padding-top: 50px;
+
 }
 
 .contact-us .container {
   position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: var(--padding-top);
+  padding-bottom: var(--padding-bottom);
 }
+
+
 
 .contact-us .container .balls{
   position: absolute;
@@ -696,7 +692,7 @@ a {
 
 .form > div label {
   position: absolute;
-  font-size: 1.25rem;
+  font-size: 1rem;
   bottom: 2px;
   right: 0;
   transition: 0.2s;
@@ -1224,4 +1220,16 @@ a {
     top: 83%;
     z-index: -1;
 }
+
+.form button {
+  width: 100px;
+  height: 35px;
+  background-color: transparent;
+  border: 1px solid var(--secondColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
 }
+}
+
