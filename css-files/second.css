@@ -140,6 +140,7 @@ main .container .cards .fillter .filter-options .option .heading {
   display: flex;
   align-items: center;
   gap: 5px;
+color:var(--txcl) ;
 }
 main .container .cards .fillter .filter-options .option .heading span{
   font-size: 1rem;
