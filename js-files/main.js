@@ -1,6 +1,6 @@
 let menu = document.querySelector(".menu"),
   navBar = document.querySelector(".navBar");
-localStorage.clear() ;
+
 menu.addEventListener("click", function () {
   menu.classList.toggle("active");
   navBar.classList.toggle("active");
