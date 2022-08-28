@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;700&family=Poppins:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css-files/second.css" />
+  </head>
+  <body dir="rtl">
+    <canvas id="cursor"></canvas>
+    <header class="header">
+      <div class="container">
+        <a href="index.html">
+          <svg
+            width="42"
+            height="42"
+            viewBox="0 0 42 42"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              class="home-page-svg"
+              d="M34.6867 13.1371L25.9367 6.09953C23.0755 3.7992 18.9245 3.80095 16.0615 6.09953L7.31152 13.1371C5.44602 14.6374 4.375 16.8712 4.375 19.266V29.7558C4.375 34.0956 7.90825 37.6249 12.25 37.6249H16.625V29.7558C16.625 27.3469 18.5885 25.3862 21 25.3862C23.4115 25.3862 25.375 27.3469 25.375 29.7558V37.6249H29.75C34.0917 37.6249 37.625 34.0956 37.625 29.7558V19.266C37.625 16.8712 36.554 14.6374 34.6867 13.1371ZM35.875 29.7558C35.875 33.1293 33.1275 35.8743 29.75 35.8743H27.125V29.7558C27.125 26.3806 24.3775 23.6356 21 23.6356C17.6225 23.6356 14.875 26.3806 14.875 29.7558V35.8743H12.25C8.8725 35.8743 6.125 33.1293 6.125 29.7558V19.266C6.125 17.4051 6.95801 15.6685 8.40876 14.5008L17.1588 7.46331C19.3848 5.67417 22.617 5.67592 24.8413 7.46331L33.5913 14.5008C35.0438 15.6685 35.875 17.4051 35.875 19.266V29.7558Z"
+              fill="#151518"
+            />
+          </svg>
+        </a>
+        <a href="#">
+          <div class="logo"><img src="./images/logo.svg" alt="logo" /></div>
+        </a>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <section class="cards">
+          <div class="fillter">
+            <div class="filter-icon-add-icon">
+              <div class="fillter-icon">
+                <svg
+                  width="19"
+                  height="16"
+                  viewBox="0 0 19 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.06061 0C4.57406 0 3.33286 1.03758 3.00219 2.42424H0.727273C0.325818 2.42424 0 2.75006 0 3.15152C0 3.55297 0.325818 3.87879 0.727273 3.87879H3.00219C3.33286 5.26545 4.57406 6.30303 6.06061 6.30303C7.7983 6.30303 9.21212 4.88921 9.21212 3.15152C9.21212 1.41382 7.7983 0 6.06061 0ZM6.06061 4.84848C5.12485 4.84848 4.36364 4.08727 4.36364 3.15152C4.36364 2.21576 5.12485 1.45455 6.06061 1.45455C6.99636 1.45455 7.75758 2.21576 7.75758 3.15152C7.75758 4.08727 6.99636 4.84848 6.06061 4.84848ZM11.6364 3.15152C11.6364 2.75006 11.9622 2.42424 12.3636 2.42424H18.1818C18.5833 2.42424 18.9091 2.75006 18.9091 3.15152C18.9091 3.55297 18.5833 3.87879 18.1818 3.87879H12.3636C11.9622 3.87879 11.6364 3.55297 11.6364 3.15152ZM18.1818 12.1212H15.9069C15.5762 10.7345 14.335 9.69697 12.8485 9.69697C11.1108 9.69697 9.69697 11.1108 9.69697 12.8485C9.69697 14.5862 11.1108 16 12.8485 16C14.335 16 15.5762 14.9624 15.9069 13.5758H18.1818C18.5833 13.5758 18.9091 13.2499 18.9091 12.8485C18.9091 12.447 18.5833 12.1212 18.1818 12.1212ZM12.8485 14.5455C11.9127 14.5455 11.1515 13.7842 11.1515 12.8485C11.1515 11.9127 11.9127 11.1515 12.8485 11.1515C13.7842 11.1515 14.5455 11.9127 14.5455 12.8485C14.5455 13.7842 13.7842 14.5455 12.8485 14.5455ZM7.27273 12.8485C7.27273 13.2499 6.94691 13.5758 6.54545 13.5758H0.727273C0.325818 13.5758 0 13.2499 0 12.8485C0 12.447 0.325818 12.1212 0.727273 12.1212H6.54545C6.94691 12.1212 7.27273 12.447 7.27273 12.8485Z"
+                    fill="#303030"
+                  />
+                </svg>
+              </div>
+              <div class="add-card-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 17V7"
+                    stroke="#303030"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M7 12L17 12"
+                    stroke="#303030"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div  class="filter-options">
+              <div class="option option-one">
+                <div class="heading">
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 17 17"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      class="option-one-svg"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8.22481 2.33895C8.39729 2.28986 8.5792 2.28982 8.75165 2.33876C9.11824 2.44279 9.4882 2.53928 9.8594 2.63609C11.6025 3.09071 13.3728 3.55242 14.9477 4.83522L15.673 5.42596C15.9672 5.66558 16.1144 6.02026 16.1145 6.37501V11.3333C16.1145 11.6267 15.8767 11.8646 15.5833 11.8646C15.2899 11.8646 15.052 11.6267 15.052 11.3333V7.83182L14.9366 7.926C14.3909 8.37134 13.8215 8.71715 13.2379 8.99787C13.2658 9.06241 13.2812 9.13357 13.2812 9.20834V12.2499C13.2812 13.0526 12.7888 13.7732 12.0408 14.0647L9.20751 15.1694C8.75249 15.3468 8.24743 15.3468 7.79241 15.1694L4.95907 14.0647C4.21116 13.7732 3.71871 13.0526 3.71871 12.2499V9.20834C3.71871 9.13168 3.73495 9.05881 3.76417 8.99299C3.17601 8.71062 2.60218 8.36278 2.05217 7.9148L1.32688 7.32406C0.738499 6.84483 0.73819 5.90533 1.32606 5.42561L2.06328 4.82402C3.62688 3.54808 5.38466 3.08913 7.11484 2.63738C7.48684 2.54025 7.85757 2.44346 8.22481 2.33895ZM15.052 6.37543C15.052 6.31162 15.0262 6.26948 15.002 6.24978L14.2768 5.65904C12.75 4.60418 11.3895 4.13894 9.66155 3.68487C9.28161 3.58503 8.89089 3.48236 8.4886 3.36855C8.08452 3.48318 7.69239 3.58634 7.31117 3.68664C5.59707 4.13759 4.1035 4.53052 2.73503 5.64722L1.99782 6.24881C1.9736 6.26857 1.94785 6.31077 1.94788 6.37459C1.9479 6.4384 1.97368 6.48054 1.99787 6.50024L2.72316 7.09098C4.10323 8.21502 5.61042 8.61108 7.33837 9.06515C7.71834 9.16499 8.109 9.26765 8.51132 9.38147C8.91537 9.26685 9.30747 9.16369 9.68866 9.06341C11.4028 8.61246 12.8964 8.2195 14.2649 7.1028L15.0021 6.50121C15.0263 6.48147 15.052 6.43914 15.052 6.37543ZM9.88509 10.1126C10.6641 9.90923 11.4487 9.70437 12.2187 9.42413V12.2499C12.2187 12.6148 11.9949 12.9423 11.6549 13.0748L8.82157 14.1794C8.61475 14.2601 8.38517 14.2601 8.17835 14.1794L5.34501 13.0748C5.00505 12.9423 4.78121 12.6148 4.78121 12.2499V9.41811C5.55951 9.70158 6.35278 9.90848 7.14051 10.1139C7.51171 10.2107 7.88168 10.3072 8.24827 10.4113C8.42073 10.4602 8.60263 10.4602 8.77511 10.4111C9.14233 10.3066 9.51311 10.2098 9.88509 10.1126Z"
+                      fill="black"
+                    />
+                  </svg>
+                  <span>المرحلة</span>
+                </div>
+                <div class="filters">
+                  <label for="inp1">
+                    <input
+                      checked
+                      id="inp1"
+                      type="checkbox"
+                      data-option="gradeOne"
+                    />
+                    <span>الاولى</span>
+                  </label>
+                  <label for="inp2">
+                    <input id="inp2" type="checkbox" data-option="gradeTwo" />
+                    <span>الثانية</span>
+                  </label>
+                  <label for="inp3">
+                    <input id="inp3" type="checkbox" data-option="gradeThree" />
+                    <span>الثالثة</span>
+                  </label>
+                  <label for="inp4">
+                    <input id="inp4" type="checkbox" data-option="gradeFour" />
+                    <span>الرابعة</span>
+                  </label>
+                </div>
+              </div>
+              <div class="option option-two">
+                <div class="heading">
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 17 17"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.03129 4.95833C9.03129 4.66493 8.79344 4.42708 8.50004 4.42708C8.20664 4.42708 7.96879 4.66493 7.96879 4.95833V8.49999C7.96879 8.68316 8.06315 8.85341 8.21848 8.95049L10.3435 10.2786C10.5923 10.4341 10.92 10.3585 11.0755 10.1097C11.231 9.86088 11.1554 9.53312 10.9066 9.37762L9.03129 8.20555V4.95833Z"
+                      fill="#014FB4"
+                    />
+                    <path
+                      class="option-two-svg"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8.50004 2.30208C5.07703 2.30208 2.30212 5.07698 2.30212 8.49999C2.30212 11.923 5.07703 14.6979 8.50004 14.6979C11.9231 14.6979 14.698 11.923 14.698 8.49999C14.698 5.07698 11.9231 2.30208 8.50004 2.30208ZM3.36462 8.49999C3.36462 5.66378 5.66383 3.36458 8.50004 3.36458C11.3363 3.36458 13.6355 5.66378 13.6355 8.49999C13.6355 11.3362 11.3363 13.6354 8.50004 13.6354C5.66383 13.6354 3.36462 11.3362 3.36462 8.49999Z"
+                      fill="black"
+                    />
+                  </svg>
+                  <span>النصف</span>
+                </div>
+                <div class="filters">
+                  <label for="inp5">
+                    <input
+                      checked
+                      id="inp5"
+                      type="checkbox"
+                      data-option="term1"
+                    />
+                    <span>الاول</span>
+                  </label>
+                  <label for="inp6">
+                    <input id="inp6" type="checkbox" data-option="term2" />
+                    <span>الثاني</span>
+                  </label>
+                </div>
+              </div>
+              <div class="option option-three">
+                <div class="heading">
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 17 17"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle cx="8.5" cy="8.5" r="8.5" fill="black" />
+                    <rect x="9" y="5" width="3" height="3" fill="white" />
+                    <rect x="5" y="5" width="3" height="3" fill="#014FB4" />
+                    <rect x="5" y="9" width="3" height="3" fill="white" />
+                    <rect x="9" y="9" width="3" height="3" fill="white" />
+                  </svg>
+                  <span>الفىة</span>
+                </div>
+                <div class="filters">
+                  <label for="inp7">
+                    <input
+                      checked
+                      id="inp7"
+                      type="checkbox"
+                      data-option="pdf"
+                    />
+                    <span>pdf</span>
+                  </label>
+                  <label for="inp8">
+                    <input id="inp8" type="checkbox" data-option="video" />
+                    <span>
+                      <i class="fa-solid fa-pause"></i>
+                    </span>
+                  </label>
+                  <label for="inp9">
+                    <input id="inp9" type="checkbox" data-option="img" />
+                    <span>
+                      <i class="fa-regular fa-image"></i>
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <button class="startfiltering">تنفيذ</button>
+            </div>
+          </div>
+          <div class="admin-sign-in-form">
+            <form action="" dir="ltr">
+              <div class="id-container">
+                <label for="">id :</label>
+                <input type="text" maxlength="12"/>
+              </div>
+              <div class="password-container">
+                <label for="">password :</label>
+                <input type="password" maxlength="12"/>
+              </div>
+              <button>submit</button>
+            </form>
+          </div>
+          <div class="add-card-form model">
+            <form action="">
+              <div class="title">
+                <label for="titleinput">العنوان</label>
+                <input type="text" name="titleinput" id="titleinput" required>
+              </div>
+              <div class="grade">
+                <label for="Cardgrade">المرحلة</label>
+                <select name="grade" id="Cardgrade">
+                  <option name="gradeOne" value="gradeOne">المرحلة الاولى</option>
+                  <option name="gradeTwo" value="gradeTwo">المرحلة الثانية</option>
+                  <option name="gradeThree" value="gradeThree">المرحلة الثالثة</option>
+                  <option name="gradeFour" value="gradeFour">المرحلة الرابعة</option>
+                </select>
+              </div>
+              <div class="term">
+                <label for="cardTerm">النصف</label>
+                <select name="term" id="cardTerm">
+                  <option value="term1"> النصف الاول</option>
+                  <option value="term2"> النصف الثاني</option>
+                </select>
+              </div>
+              <div class="category">
+                <label for="cardCategory">الفىة</label>
+                <select name="category" id="cardCategory">
+                  <option value="pdf">pdf</option>
+                  <option value="viedo">viedo</option>
+                  <option value="img">صورة</option>
+                </select>
+              </div>
+              <div class="file-type">
+                <label for="file-type">النوع</label>
+                <select name="file-type" id="file-type">
+                  <option value="file">ملف</option>
+                  <option value="link">رابط</option>
+                </select>
+              </div>
+              <div class="link">
+                <label for="linkInput">
+                  <span>اختر ملف</span>
+                  <input name="linkInput" type="text" class="linkInput">
+                </label>
+              </div>
+              <div class="file-container">
+                <label for="fileInput">
+                  <span>اختر ملف</span>
+                  <input id="fileInput" type="file" class="file-input">
+                </label>
+              </div>
+              <div class="progress-bar" data-load="تحميل"></div>
+              <button>اضافة</button>
+            </form>
+          </div>
+          <div class="update-card-form model">
+            <form action="">
+              <div class="title">
+                <label for="titleinput">العنوان</label>
+                <input type="text" name="titleinput"  required>
+              </div>
+              <div class="grade">
+                <label for="Cardgrade">المرحلة</label>
+                <select name="grade" >
+                  <option value="gradeOne">المرحلة الاولى</option>
+                  <option value="gradeTwo">المرحلة الثانية</option>
+                  <option value="gradeThree">المرحلة الثالثة</option>
+                  <option value="gradeFour">المرحلة الرابعة</option>
+                </select>
+              </div>
+              <div class="term">
+                <label for="cardTerm">النصف</label>
+                <select name="term">
+                  <option value="term1">الاول</option>
+                  <option value="term2">الثاني</option>
+                </select>
+              </div>
+              <div class="category">
+                <label for="cardCategory">الفىة</label>
+                <select name="category" >
+                  <option value="pdf">pdf</option>
+                  <option value="viedo">viedo</option>
+                  <option value="img">صورة</option>
+                </select>
+              </div>
+              <button>استبدال</button>
+            </form>
+          </div>
+          <div class="rebort-card-form">
+            <form  action="https://formspree.io/f/mnqrnabw" method="post">
+              <input type="text" name="cardId">
+            <div class="name-con">
+              <label for="name">اسمك:</label>
+              <input type="text" name="name" id="name">
+            </div>
+            <div class="email-con">
+              <label for="email">ايميلك:</label>
+              <input type="email" name="email" id="email">
+            </div>
+            <div class="message-con">
+              <label for="message">رسالة:</label>
+              <textarea name="message" id="message"></textarea>
+            </div>
+            <button>ارسال</button>
+            </form>
+          </div>
+          <div class="cards-container">
+            </div>
+            </div>
+        </section>
+      </div>
+    </main>
+    <script src="./js-files/cursor.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.2/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.2/firebase-auth-compat.js"></script>
+    <script src="./js-files/second.js">
+    </script>
+  </body>
+</html>
