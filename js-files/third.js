@@ -53,6 +53,7 @@ joinChampionshipBtns.forEach(function(btn) {
 btn.addEventListener('click',function(){
   btn.classList.add('animated')
   let joinChampionshipBtnProgress = document.querySelector(`.${this.classList[0]}.animated div`)
+  console.log(btn)
   
   if(allow){
   setTimeout(function() {
