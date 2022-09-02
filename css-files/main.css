@@ -666,7 +666,7 @@ header .logo {
   position: relative;
   transform-style: preserve-3d;
   transition: 0.5s 0s;
-  z-index 99999999999999
+  z-index: 99999999999999
 }
 
 .member .member-con:hover .member-img-container {
