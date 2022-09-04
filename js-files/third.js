@@ -110,6 +110,7 @@ function addChampionshipToFirebase() {
       deadline,
       color,
       img,
+      first:[]
     })
   }
   formContainer.classList.remove("adminPremission")
@@ -149,22 +150,30 @@ db.collection('Championships').get().then(querySnapshot => {
   querySnapshot.forEach(doc => {
     showChampionships(doc)
   })
-  gsap.from(".championship", { duration: 3, opacity: 0, ease: "expo", stagger: .6, delay: 1 })
-  gsap.from(".participantImg", { duration: 3, opacity: 0, ease: "expo", stagger: .6, delay: 2 })
+  let tl = gsap.timeline({defaults: {duration:2}})
+  tl.from(".championship", {  opacity: 0, ease: "expo", stagger: .6 })
+  tl.from(".participantImg", {  opacity: 0, ease: "expo", stagger: .6  })
+  gsap.from(".firstChild", {['--progress-width']:"0"  ,duration:5, ease: "expo", stagger: .6 })
+  gsap.from(".championship-progress span", {['--progress-width']:"0"  ,duration:5, ease: "expo", stagger: .6  })
 })
 
 // show Championships
 function showChampionships(championship) {
   let id = championship.id
   let data = championship.data()
+  // color
   let h = data.color.h
   let s = data.color.s
   let l = data.color.l
+  // progras bar length
+  let progras = (data.first.length / data.participantsNumber) * 100
+
   let card = `
   <div class="championship" id="${id}"
    style=" --hue : ${Math.round(h * 360)};
   --saturation:${Math.round(s * 100)}%;
-  --lightness :${Math.round(l * 100)}%;">
+  --lightness :${Math.round(l * 100)}%;
+  --progress-width :${progras};">
   <div class="championship-img">
     <i class="fa-solid fa-crown"></i>
   </div>
@@ -172,13 +181,13 @@ function showChampionships(championship) {
   <div data-participants="${id}" class="participants-container">
   </div>
   <div class="championship-progress">
-    <span>45%</span>
+    <span>${Math.floor(progras)}%</span>
     <div class="progress-bar">
-      <div></div>
+      <div class="firstChild"></div>
       <div></div>
     </div>
   </div>
-  <button data-bid="${id}" class="join-championship-btn" onclick="animatingBtn(this.dataset.bid)" >
+  <button data-bid="${id}" class="join-championship-btn" onclick="animatingBtn(this.dataset.bid)">
     <span>تسجيل</span>
     <div></div>
     <svg
@@ -191,8 +200,13 @@ function showChampionships(championship) {
       <path d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2" />
     </svg>
   </button>
-  <div class="deadline-time">
-    <span>متبقي دقيقتان</span>
+  <div class="deadline-time" data-time="${id}">
+    <div class="date">
+    <span class="sec"> 20</span>
+    <span class="min"> 20</span>
+    <span class="hou">24 </span>
+    <span class="day">1 </span>
+    </div>
 
     <svg
       width="13"
@@ -215,6 +229,45 @@ function showChampionships(championship) {
 </div>
   `
   championshipsContainer.insertAdjacentHTML('beforeend', card)
+  //check if the user if already registered in championship
+  data.first.forEach(user => {
+    if (userProfile.uid === user.uid) {
+      let registerBtn = document.querySelector(`.main  [data-bId="${id}"]`)
+      registerBtn.classList.add('registered')
+    }
+  })
+
+  // add countdown time
+  let championshipDeadline = document.querySelector(`[data-time="${id}"] span`)
+  let secCo = document.querySelector(`[data-time="${id}"] .date .sec`)
+  let minCo = document.querySelector(`[data-time="${id}"] .date .min`)
+  let houCo = document.querySelector(`[data-time="${id}"] .date .hou`)
+  let dayCo = document.querySelector(`[data-time="${id}"] .date .day`)
+
+  let deadline = new Date(data.deadline).getTime()
+
+  let countdown = setInterval(function () {
+    let startingDate = new Date().getTime()
+    //The difference between the deadLIne and  starting Date
+    let defBtDLandST = deadline - startingDate;
+
+    let day = Math.floor(defBtDLandST / (1000 * 60 * 60 * 24))
+    let hou = Math.floor(defBtDLandST % (1000 * 60 * 60 * 24) / (1000 * 60 * 60))
+    let min = Math.floor(defBtDLandST % (1000 * 60 * 60) / (1000 * 60))
+    let sec = Math.floor(defBtDLandST % (1000 * 60) / 1000)
+
+    dayCo.innerHTML =day < 10 ? `-0${day}`:`-${day}`;
+    houCo.innerHTML = hou < 10 ? `-0${hou}`:`-${hou}`;
+    minCo.innerHTML =min < 10 ? `-0${min}`:`-${min}`;
+    secCo.innerHTML = sec < 10 ? `0${sec}`:`${sec}`;
+
+    if(defBtDLandST < 0){
+      clearInterval(countdown)
+    }
+
+  }, 1000)
+
+
   // add the participants img to the championship
   let participants = document.querySelector(`[data-participants="${id}"]`)
   if (data.first) {
@@ -227,21 +280,31 @@ function showChampionships(championship) {
     })
   }
 
+
+
+  // // admin Premissions to delet the championship
+  if (isAdmin) {
+    let championship = document.getElementById(id)
+    let championshipCard = document.getElementById(id)
+
+  }
 }
 
 
 
 
 
-// animating the button
+// animating the register button
 function animatingBtn(id) {
   let allow = true
   let btn = document.querySelector(`.main .championships .championship [data-bId="${id}"]`)
+  // to prevent the user from click the button again
+  btn.setAttribute('disabled', "")
 
-  if (allow) {
+  if (!btn.classList.contains('registered')) {
+
     btn.classList.add('animated')
     let joinChampionshipBtnProgress = document.querySelector(`.main .championships .championship [data-bId="${id}"].animated div`)
-
 
     setTimeout(function () {
       let progressCount = 10;
@@ -252,15 +315,31 @@ function animatingBtn(id) {
         }
         progressCount += 10
       }, 50)
-      allow -= 1;
+
     }, 500)
+
+    setTimeout(function () {
+      playerRegisterToChamp(id)
+      btn.classList.add('registered')
+    }, 4000)
+
   }
-  setTimeout(function () { playerRegisterToChamp(id) }, 4000)
+
 }
 
 // player Register To championship
 function playerRegisterToChamp(id) {
+  let btn = document.querySelector(`.main .championships .championship [data-bId="${id}"]`)
+  // if(!btn.classList.contains('registered')){
   let playerImg = userProfile.picture;
+  let participants = document.querySelector(`[data-participants="${id}"]`)
+  let img = document.createElement('img')
+  img.src = playerImg
+  gsap.from(img, { duration: 3, opacity: 0, ease: "expo" })
+  participants.appendChild(img)
+
+  // add it to firbase
   let card = db.collection("Championships").doc(id)
   card.set({ first: firebase.firestore.FieldValue.arrayUnion(userProfile) }, { merge: true })
 }
+// }
