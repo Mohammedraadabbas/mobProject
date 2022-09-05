@@ -96,9 +96,10 @@ header .container .sign-in img {
 /*===== main / championships add form=====*/
 .main .championships .add-championships-form-constainer {
   z-index: 999999;
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   pointer-events: none;
   opacity: 0;
   transition: var(--transition);
@@ -155,16 +156,17 @@ header .container .sign-in img {
   background-color: var(--cardscl);
   color: var(--txcl);
 }
+
 .main .championships .add-championships-form-constainer form button:hover{
   background-color: #014FB4;
   color: #ffffff;
 }
 
 .main .championships .championship {
-  /* --hue : 360;
+  --hue : 360;
   --saturation:67%;
-  --lightness :63%; */
-  /* --progress-width :50%; */
+  --lightness :63%;
+  --progress-width :50%;
   --padding:.9375rem;
   height: 15.375rem;
   padding: var(--padding);
@@ -179,12 +181,43 @@ header .container .sign-in img {
   font-size: 10px;
   color: var(--text-cl);
 }
+.main .championships .championship .deleteCardBtn {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #303030;
+  border-radius: 50%;
+  transition: var(--transition);
+  cursor: pointer;
+  color: #303030;
+}
+.main .championships .championship .deleteCardBtn i{
+  font-size: .9rem;
+}
+.main .championships .championship .deleteCardBtn:hover{
+  color: #ffffff;
+  background-color: #EE3B2B;
+  border: none;
+}
+.main .championships .championship .option-svg {
+  position: absolute;
+  top: var(--padding);
+  right: var(--padding);
+  cursor: pointer;
+}
+.main .championships .championship .option-svg:hover .path{
+  stroke: hsl(0, 0%, 23%);
+}
 .main .championships .championship .championship-img {
   width: 5.3rem;
   height: 5.3rem;
   border-radius: 1rem;
   background-color: hsla(var(--hue), var(--saturation), var(--lightness), 1);
-  color: var(--card-cl);
   box-shadow: 0px 4.02617px 16.1047px hsla(var(--hue), var(--saturation), var(--lightness), 1);
   position: absolute;
   top: 0;
@@ -193,6 +226,15 @@ header .container .sign-in img {
   justify-content: center;
   align-items: center;
   font-size: 2.5rem;
+}
+.main .championships .championship .championship-img > *{
+  color: var(--card-cl);
+  fill: var(--card-cl);
+  stroke: var(--card-cl);
+  width: 2.5rem;
+  object-fit: cover;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
 }
 .main .championships .championship h2 {
   font-size: 1.5rem;
@@ -311,8 +353,6 @@ header .container .sign-in img {
 .main .championships .championship .join-championship-btn.animated {
   animation: animated .25s .25s cubic-bezier(0.42, 0, 0.99, 0.04) forwards,
   animated2 .25s 2.75s cubic-bezier(0.42, 0, 0.99, 0.04) forwards;
-
-  /* cubic-bezier(0, 1.46, 0.03, 0.76) */
 }
 @keyframes animated {
   0%{
