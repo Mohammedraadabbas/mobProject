@@ -64,8 +64,10 @@ function checkAdmin(userId) {
   })
 }
 
+// form btns
 let championshipsContainer = document.querySelector('.championships .container')
-
+let addChampionshipBtn = document.querySelector('.main .championships .add-championships-form-constainer .addChampionshipBtn');
+let updateChampionshipBtn = document.querySelector('.main .championships .add-championships-form-constainer .updateChampionshipBtn');
 // admin Premissions
 let formContainer = document.querySelector('.main .championships .add-championships-form-constainer')
 function adminPremissions() {
@@ -80,22 +82,30 @@ function adminPremissions() {
 
     addChampionshipTag.addEventListener('click', function () {
       formContainer.classList.add('adminPremission')
+      ChampionshipForm.title.value = ""
+      ChampionshipForm.participantsNumber.value = 8
+      ChampionshipForm.startingDate.value = ""
+      ChampionshipForm.deadline.value = ""
+      ChampionshipForm.img.value = ""
+      ChampionshipForm.color.value = "#000000"
+      addChampionshipBtn.style.display = "block"
+      updateChampionshipBtn.style.display = "none"
     })
   }
 }
-// show add Championship Form 
-
-let addChampionshipBtn = document.querySelector('.main .championships .add-championships-form-constainer button');
+// show add Championship btn 
 addChampionshipBtn.addEventListener('click', function (e) {
   e.preventDefault()
-  addChampionshipToFirebase()
+  addChampionshipToFirebase("", "", false)
 })
 
 
-//add Championship ToF irebase
+
+
+//add or update Championship To Firebase
 let ChampionshipForm = document.querySelector('.main .championships .add-championships-form-constainer form')
 
-function addChampionshipToFirebase() {
+function addChampionshipToFirebase(id, players, update) {
   let title = ChampionshipForm.title.value
   let participantsNumber = ChampionshipForm.participantsNumber.value
   let startingDate = ChampionshipForm.startingDate.value
@@ -103,21 +113,36 @@ function addChampionshipToFirebase() {
   let color = hexToHSL(ChampionshipForm.color.value)
   let img = ChampionshipForm.img.value
   if (isAdmin) {
-    db.collection('Championships').doc().set({
-      title,
-      participantsNumber,
-      startingDate,
-      deadline,
-      color,
-      img,
-      first:[]
-    })
+    if (update) {
+      db.collection('Championships').doc(id).update({
+        title,
+        participantsNumber,
+        startingDate,
+        deadline,
+        color,
+        img,
+        first: players.first
+      })
+      console.log('update')
+    }
+    else {
+      db.collection('Championships').doc().set({
+        title,
+        participantsNumber,
+        startingDate,
+        deadline,
+        color,
+        img,
+        first: []
+      })
+      console.log('add')
+    }
+    formContainer.classList.remove("adminPremission")
   }
-  formContainer.classList.remove("adminPremission")
 }
 
 
-
+// convert the hex color code to hsl and return the hsl code and the hex code
 function hexToHSL(hex) {
   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   r = parseInt(result[1], 16);
@@ -142,6 +167,7 @@ function hexToHSL(hex) {
   HSL['h'] = h;
   HSL['s'] = s;
   HSL['l'] = l;
+  HSL["hex"] = hex;
   return HSL;
 }
 
@@ -150,12 +176,18 @@ db.collection('Championships').get().then(querySnapshot => {
   querySnapshot.forEach(doc => {
     showChampionships(doc)
   })
-  let tl = gsap.timeline({defaults: {duration:2}})
-  tl.from(".championship", {  opacity: 0, ease: "expo", stagger: .6 })
-  tl.from(".participantImg", {  opacity: 0, ease: "expo", stagger: .6  })
-  gsap.from(".firstChild", {['--progress-width']:"0"  ,duration:5, ease: "expo", stagger: .6 })
-  gsap.from(".championship-progress span", {['--progress-width']:"0"  ,duration:5, ease: "expo", stagger: .6  })
+
+  // animate the card
+  var path = document.querySelector('.cardSvg')
+  let tl = gsap.timeline({ defaults: { duration: 2 } })
+  tl.from(".championship", { opacity: 0, ease: "expo", stagger: .6 })
+  tl.from(".participantImg", { opacity: 0, ease: "expo", stagger: .6 })
+  tl.to('.cardSvg', { "stroke-dashoffset": "1000" })
+  gsap.from(".firstChild", { ['--progress-width']: "0", duration: 5, ease: "expo", stagger: .6 })
+  gsap.from(".championship-progress span", { ['--progress-width']: "0", duration: 5, ease: "expo", stagger: .6 })
 })
+
+
 
 // show Championships
 function showChampionships(championship) {
@@ -174,8 +206,11 @@ function showChampionships(championship) {
   --saturation:${Math.round(s * 100)}%;
   --lightness :${Math.round(l * 100)}%;
   --progress-width :${progras};">
+  <div class="deleteCardBtn" data-deleteId="${id}">
+    <i class="fa-regular fa-trash-can"></i>
+    </div>
   <div class="championship-img">
-    <i class="fa-solid fa-crown"></i>
+  <i class="fa-solid fa-crown"></i>
   </div>
   <h2>${data.title}</h2>
   <div data-participants="${id}" class="participants-container">
@@ -228,17 +263,19 @@ function showChampionships(championship) {
   </div>
 </div>
   `
+
   championshipsContainer.insertAdjacentHTML('beforeend', card)
   //check if the user if already registered in championship
   data.first.forEach(user => {
     if (userProfile.uid === user.uid) {
       let registerBtn = document.querySelector(`.main  [data-bId="${id}"]`)
       registerBtn.classList.add('registered')
+    } else {
+      registerBtn.classList.remove('registered')
     }
   })
 
   // add countdown time
-  let championshipDeadline = document.querySelector(`[data-time="${id}"] span`)
   let secCo = document.querySelector(`[data-time="${id}"] .date .sec`)
   let minCo = document.querySelector(`[data-time="${id}"] .date .min`)
   let houCo = document.querySelector(`[data-time="${id}"] .date .hou`)
@@ -256,15 +293,14 @@ function showChampionships(championship) {
     let min = Math.floor(defBtDLandST % (1000 * 60 * 60) / (1000 * 60))
     let sec = Math.floor(defBtDLandST % (1000 * 60) / 1000)
 
-    dayCo.innerHTML =day < 10 ? `-0${day}`:`-${day}`;
-    houCo.innerHTML = hou < 10 ? `-0${hou}`:`-${hou}`;
-    minCo.innerHTML =min < 10 ? `-0${min}`:`-${min}`;
-    secCo.innerHTML = sec < 10 ? `0${sec}`:`${sec}`;
+    dayCo.innerHTML = day < 10 ? `-0${day}` : `-${day}`;
+    houCo.innerHTML = hou < 10 ? `-0${hou}` : `-${hou}`;
+    minCo.innerHTML = min < 10 ? `-0${min}` : `-${min}`;
+    secCo.innerHTML = sec < 10 ? `0${sec}` : `${sec}`;
 
-    if(defBtDLandST < 0){
+    if (defBtDLandST < 0) {
       clearInterval(countdown)
     }
-
   }, 1000)
 
 
@@ -282,21 +318,70 @@ function showChampionships(championship) {
 
 
 
-  // // admin Premissions to delet the championship
+  // admin Premissions 
+  let deleteBtn 
   if (isAdmin) {
+    //show option the championship
     let championship = document.getElementById(id)
-    let championshipCard = document.getElementById(id)
-
+    let optionSvg = `
+    <svg data-svg="${id}" class="option-svg" width="5" height="22" viewBox="0 0 5 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M2.2 1.1C2.80751 1.1 3.3 1.59249 3.3 2.2C3.3 2.80751 2.80751 3.3 2.2 3.3C1.59249 3.3 1.1 2.80751 1.1 2.2C1.1 1.59249 1.59249 1.1 2.2 1.1ZM2.2 9.9C2.80751 9.9 3.3 10.3925 3.3 11C3.3 11.6075 2.80751 12.1 2.2 12.1C1.59249 12.1 1.1 11.6075 1.1 11C1.1 10.3925 1.59249 9.9 2.2 9.9ZM2.2 18.7C2.80751 18.7 3.3 19.1925 3.3 19.8C3.3 20.4075 2.80751 20.9 2.2 20.9C1.59249 20.9 1.1 20.4075 1.1 19.8C1.1 19.1925 1.59249 18.7 2.2 18.7Z"
+        fill="#C9C9C9"
+        stroke="#C9C9C9"
+        stroke-width="2.2"
+        class="path"
+      />
+    </svg>`
+    championship.insertAdjacentHTML('beforeend', optionSvg)
+    let svg = document.querySelector(`[data-svg="${id}"]`)
+    console.log(svg)
+    // show the form and display the update btn
+    svg.addEventListener('click', function () {
+      addChampionshipBtn.style.display = "none"
+      updateChampionshipBtn.style.display = "block"
+      updateChampionship(id, data)
+    })
+    // show delete icon championship
+    deleteBtn = document.querySelector(`[data-deleteId="${id}"]`)
+    deleteBtn.style.display = "flex"
+    
   }
+  // admin Premissions to delete the championship
+  deleteBtn.addEventListener("click",function(){
+    deleteChampionship(this.dataset.deleteid)
+  })
 }
 
+// delete Championship
+function deleteChampionship(id){
+  
+  if(isAdmin){
+    let championship = document.getElementById(id)
+    // delete it from the DOM
+    gsap.to(championship,{display:"none",opacity:0,duration: 2,ease: "power4.inOut"})
+    // championship.remove()
+  }
+} 
 
-
+// update Championship
+function updateChampionship(id, data) {
+  formContainer.classList.add('adminPremission')
+  ChampionshipForm.title.value = data.title
+  ChampionshipForm.participantsNumber.value = data.participantsNumber
+  ChampionshipForm.startingDate.value = data.startingDate
+  ChampionshipForm.deadline.value = data.deadline
+  ChampionshipForm.img.value = data.img
+  ChampionshipForm.color.value = data.color.hex
+  updateChampionshipBtn.addEventListener('click', function (e) {
+    e.preventDefault()
+    addChampionshipToFirebase(id, data, true)
+  })
+}
 
 
 // animating the register button
 function animatingBtn(id) {
-  let allow = true
   let btn = document.querySelector(`.main .championships .championship [data-bId="${id}"]`)
   // to prevent the user from click the button again
   btn.setAttribute('disabled', "")
@@ -318,6 +403,7 @@ function animatingBtn(id) {
 
     }, 500)
 
+    //display the user img on the champions card after the animating is end 
     setTimeout(function () {
       playerRegisterToChamp(id)
       btn.classList.add('registered')
@@ -330,7 +416,6 @@ function animatingBtn(id) {
 // player Register To championship
 function playerRegisterToChamp(id) {
   let btn = document.querySelector(`.main .championships .championship [data-bId="${id}"]`)
-  // if(!btn.classList.contains('registered')){
   let playerImg = userProfile.picture;
   let participants = document.querySelector(`[data-participants="${id}"]`)
   let img = document.createElement('img')
@@ -342,4 +427,3 @@ function playerRegisterToChamp(id) {
   let card = db.collection("Championships").doc(id)
   card.set({ first: firebase.firestore.FieldValue.arrayUnion(userProfile) }, { merge: true })
 }
-// }
