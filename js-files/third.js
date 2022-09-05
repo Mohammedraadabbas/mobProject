@@ -360,7 +360,8 @@ function deleteChampionship(id){
     let championship = document.getElementById(id)
     // delete it from the DOM
     gsap.to(championship,{display:"none",opacity:0,duration: 2,ease: "power4.inOut"})
-    // championship.remove()
+    // delete it from the FIREBASE
+    db.collection('Championships').doc(id).delete()
   }
 } 
 
