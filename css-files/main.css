@@ -566,7 +566,7 @@ header .logo {
 
 .members > img {
   position: absolute;
-  z-index: 11111;
+/*   z-index: 11111; */
   top: -200px;
   left: -460px;
 }
