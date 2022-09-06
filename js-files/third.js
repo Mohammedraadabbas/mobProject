@@ -266,7 +266,7 @@ function showChampionships(championship) {
 
   championshipsContainer.insertAdjacentHTML('beforeend', card)
   //check if the user if already registered in championship
-  if(userProfile){
+  if (userProfile) {
     data.first.forEach(user => {
       if (userProfile.uid === user.uid) {
         let registerBtn = document.querySelector(`.main  [data-bId="${id}"]`)
@@ -319,7 +319,7 @@ function showChampionships(championship) {
 
 
   // admin Premissions 
-  let deleteBtn 
+  let deleteBtn
   if (isAdmin) {
     //show option the championship
     let championship = document.getElementById(id)
@@ -345,25 +345,25 @@ function showChampionships(championship) {
     // show delete icon championship
     deleteBtn = document.querySelector(`[data-deleteId="${id}"]`)
     deleteBtn.style.display = "flex"
-    
+    // admin Premissions to delete the championship
+    deleteBtn.addEventListener("click", function () {
+      deleteChampionship(this.dataset.deleteid)
+    })
   }
-  // admin Premissions to delete the championship
-  deleteBtn.addEventListener("click",function(){
-    deleteChampionship(this.dataset.deleteid)
-  })
+
 }
 
 // delete Championship
-function deleteChampionship(id){
-  
-  if(isAdmin){
+function deleteChampionship(id) {
+
+  if (isAdmin) {
     let championship = document.getElementById(id)
     // delete it from the DOM
-    gsap.to(championship,{display:"none",opacity:0,duration: 2,ease: "power4.inOut"})
+    gsap.to(championship, { display: "none", opacity: 0, duration: 2, ease: "power4.inOut" })
     // delete it from the FIREBASE
     db.collection('Championships').doc(id).delete()
   }
-} 
+}
 
 // update Championship
 function updateChampionship(id, data) {
