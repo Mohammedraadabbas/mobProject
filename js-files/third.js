@@ -266,12 +266,14 @@ function showChampionships(championship) {
 
   championshipsContainer.insertAdjacentHTML('beforeend', card)
   //check if the user if already registered in championship
-  data.first.forEach(user => {
-    if (userProfile.uid === user.uid) {
-      let registerBtn = document.querySelector(`.main  [data-bId="${id}"]`)
-      registerBtn.classList.add('registered')
-    }
-  })
+  if(userProfile){
+    data.first.forEach(user => {
+      if (userProfile.uid === user.uid) {
+        let registerBtn = document.querySelector(`.main  [data-bId="${id}"]`)
+        registerBtn.classList.add('registered')
+      }
+    })
+  }
 
   // add countdown time
   let secCo = document.querySelector(`[data-time="${id}"] .date .sec`)
