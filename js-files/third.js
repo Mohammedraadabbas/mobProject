@@ -178,9 +178,11 @@ db.collection('Championships').get().then(querySnapshot => {
   })
 
   // animate the card
+  var path = document.querySelector('.cardSvg')
   let tl = gsap.timeline({ defaults: { duration: 2 } })
   tl.from(".championship", { opacity: 0, ease: "expo", stagger: .6 })
   tl.from(".participantImg", { opacity: 0, ease: "expo", stagger: .6 })
+  tl.to('.cardSvg', { "stroke-dashoffset": "1000" })
   gsap.from(".firstChild", { ['--progress-width']: "0", duration: 5, ease: "expo", stagger: .6 })
   gsap.from(".championship-progress span", { ['--progress-width']: "0", duration: 5, ease: "expo", stagger: .6 })
 })
@@ -268,7 +270,7 @@ function showChampionships(championship) {
     if (userProfile.uid === user.uid) {
       let registerBtn = document.querySelector(`.main  [data-bId="${id}"]`)
       registerBtn.classList.add('registered')
-    } 
+    }
   })
 
   // add countdown time
