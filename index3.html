@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;700&family=Poppins:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css-files//third.css" />
+  </head>
+  <body dir="rtl">
+
+    <header>
+      <div class="container">
+        <div class="sign-in">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <a href="#">
+          <div class="logo"><img src="./images/logo.svg" alt="" /></div>
+        </a>
+      </div>
+    </header>
+    <main class="main">
+      <section class="championships">
+        <div class="container" >
+          <div class="add-championships-form-constainer">
+            <form action="">
+              <div class="title">
+                <label for="title">العنوان</label>
+                <input type="text" name="title" id="title" />
+              </div>
+              <div class="participants-number">
+                <label for="participantsNumber">عدد المشاركين</label>
+                <input
+                  step="8"
+                  max="16"
+                  min="8"
+                  type="number"
+                  name="participantsNumber"
+                  id="participantsNumber"
+                  value="8"
+                />
+              </div>
+              <div class="starting-date">
+                <label for="startingDate">موعد البدء</label>
+                <input type="text" name="startingDate" id="startingDate" />
+              </div>
+              <div class="deadline">
+                <label for="deadline">اخر موعد للتسجيل</label>
+                <input type="text" name="deadline" id="deadline" />
+              </div>
+              <div class="color">
+                <label for="color">اللون</label>
+                <input type="color" name="color" id="color" />
+              </div>
+              <div class="img">
+                <label for="img">الصورة</label>
+                <input type="text" name="img" id="img" />
+              </div>
+              <button class="addChampionshipBtn">اضافة</button>
+              <button class="updateChampionshipBtn">تحديث</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section class="schedule" dir="ltr">
+        <div class="container"></div>
+        
+        </div>
+      </section>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-database-compat.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics-compat.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+    <script src="./js-files/third.js"></script>
+  </body>
+</html>

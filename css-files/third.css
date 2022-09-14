@@ -1,0 +1,487 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+.container {
+  --padding: 3rem;
+  width: min(1200px, 100% - var(--padding));
+  margin: 0 auto;
+}
+@media screen and (max-width: 480px) {
+  .container {
+    --padding: 2rem;
+    width: min(1200px, 100% - var(--padding));
+  }
+}
+body {
+  font-family: "Cairo", sans-serif;
+  --transition: 0.5s ease;
+  --first-cl: #0600ff;
+  --body-cl: #ffffff;
+  --text-cl: #303030;
+  --card-cl: #ffffff;
+  background-color: var(--body-cl);
+  position: relative;
+  /* overflow: hidden; */
+}
+body.mode {
+  --card-cl: #030303;
+  --text-cl: #ffffff;
+  --body-cl: #2b2b2b;
+}
+
+/*===== heder =====*/
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4.6875rem;
+}
+header .container .sign-in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: #dbdbdb;
+  overflow: hidden;
+}
+header .container .sign-in i {
+  font-size: 1.2em;
+  color: hsl(0, 0%, 51%);
+}
+header .container .sign-in img {
+  width: 100%;
+  object-fit: cover;
+}
+
+section {
+  margin-top: 4rem;
+}
+
+/*===== main / championships =====*/
+
+.main .championships .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 18.75rem);
+  column-gap: 1.875rem;
+  row-gap: 4rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.main .championships .add-championship {
+  height: 15.375rem;
+  background: #ffffff;
+  box-shadow: 0px 0px 69.7089px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 0.9375rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main .championships .add-championship i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6.25rem;
+  height: 6.25rem;
+  border-radius: 50%;
+  font-size: 2em;
+  color: var(--first-cl);
+  transition: var(--transition);
+}
+.main .championships .add-championship:hover i {
+  background: #ffffff;
+  box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.25);
+}
+
+/*===== main / championships add form=====*/
+.main .championships .add-championships-form-constainer {
+  z-index: 999999;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: var(--transition);
+}
+.main .championships .add-championships-form-constainer.adminPremission {
+  pointer-events: all;
+  opacity: 1;
+}
+.main .championships .add-championships-form-constainer form {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 69.7089px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 1.5rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 300px;
+}
+.main .championships .add-championships-form-constainer form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.main .championships .add-championships-form-constainer form div label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: var(--transition);
+}
+.main .championships .add-championships-form-constainer form div label:hover {
+  padding-right: 0.8rem;
+}
+.main .championships .add-championships-form-constainer form div input {
+  outline: none;
+  border: 1px solid #000000;
+  height: 1.5rem;
+  font-size: 0.875rem;
+  padding-right: 0.2rem;
+  transition: var(--transition);
+}
+.main .championships .add-championships-form-constainer form div input:focus {
+  border-color: #0600ff;
+  border-radius: 20px;
+  transform: scale(1.1);
+}
+.main .championships .add-championships-form-constainer form button {
+  outline: none;
+  border: 1px solid #014fb4;
+  padding: 10px 15px;
+  box-shadow: 0px 5.57143px 23.2143px rgba(0, 0, 0, 0.25) inset;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: 0.5s ease;
+  cursor: pointer;
+  background-color: var(--cardscl);
+  color: var(--txcl);
+}
+
+.main .championships .add-championships-form-constainer form button:hover {
+  background-color: #014fb4;
+  color: #ffffff;
+}
+
+.main .championships .championship {
+  --hue: 360;
+  --saturation: 67%;
+  --lightness: 63%;
+  --progress-width: 50%;
+  --padding: 0.9375rem;
+  height: 15.375rem;
+  padding: var(--padding);
+  background-color: var(--card-cl);
+  box-shadow: 0px 0px 69.7089px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 0.9375rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  font-size: 10px;
+  color: var(--text-cl);
+}
+.main .championships .championship .deleteCardBtn {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #303030;
+  border-radius: 50%;
+  transition: var(--transition);
+  cursor: pointer;
+  color: #303030;
+}
+.main .championships .championship .deleteCardBtn i {
+  font-size: 0.9rem;
+}
+.main .championships .championship .deleteCardBtn:hover {
+  color: #ffffff;
+  background-color: #ee3b2b;
+  border: none;
+}
+.main .championships .championship .option-svg {
+  position: absolute;
+  top: var(--padding);
+  right: var(--padding);
+  cursor: pointer;
+}
+.main .championships .championship .option-svg:hover .path {
+  stroke: hsl(0, 0%, 23%);
+}
+.main .championships .championship .championship-img {
+  width: 5.3rem;
+  height: 5.3rem;
+  border-radius: 1rem;
+  background-color: hsla(var(--hue), var(--saturation), var(--lightness), 1);
+  box-shadow: 0px 4.02617px 16.1047px
+    hsla(var(--hue), var(--saturation), var(--lightness), 1);
+  position: absolute;
+  top: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--card-cl);
+  font-size: 2.5rem;
+}
+.main .championships .championship h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+.main .championships .championship .participants-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 1.25rem);
+  justify-content: center;
+  align-items: center;
+  row-gap: 0.2rem;
+  height: 55px;
+  width: 100%;
+}
+.main .championships .championship .participants-container img {
+  width: 1.5625rem;
+  height: 1.5625rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.main .championships .championship .championship-progress {
+  position: relative;
+  width: 100%;
+}
+.main .championships .championship .championship-progress span {
+  position: absolute;
+  font-size: 0.625rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  top: -0.9375rem;
+}
+.main .championships .championship .championship-progress .progress-bar {
+  width: 100%;
+  height: 0.375rem;
+  border-radius: 2rem;
+  background-color: hsla(var(--hue), var(--saturation), var(--lightness), 0.2);
+  position: relative;
+}
+.main
+  .championships
+  .championship
+  .championship-progress
+  .progress-bar
+  div:first-child {
+  position: absolute;
+  width: calc(var(--progress-width) * 1%);
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: hsla(var(--hue), var(--saturation), var(--lightness), 0.8);
+  border-radius: 2rem;
+  transition: 0.5s ease-out;
+  animation: beat 10s 0s linear infinite;
+}
+@keyframes beat {
+  0%,
+  80% {
+    box-shadow: none;
+    transform: scaleY(1);
+  }
+  100% {
+    box-shadow: 0px 4.02617px 16.1047px
+      hsla(var(--hue) * 360, var(--saturation), var(--lightness), 1);
+    transform: scaleY(1.1);
+  }
+}
+
+.main
+  .championships
+  .championship
+  .championship-progress
+  .progress-bar
+  div:last-child {
+  position: absolute;
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: hsla(
+    var(--hue),
+    var(--saturation),
+    calc(var(--lightness) - 10%),
+    1
+  );
+  border-radius: 2rem;
+  z-index: 1111;
+  animation: progressBar 10s 0s linear infinite;
+}
+@keyframes progressBar {
+  0%,
+  80% {
+    width: 0;
+  }
+  100% {
+    width: calc(var(--progress-width) * 1%);
+  }
+}
+
+.main .championships .championship .join-championship-btn {
+  display: block;
+  border: none;
+  outline: none;
+  width: 5.3125rem;
+  height: 1.75rem;
+  background-color: hsla(var(--hue), var(--saturation), var(--lightness), 1);
+  color: var(--card-cl);
+  font-size: 1.4em;
+  font-weight: 700;
+  border-radius: 3em;
+  cursor: pointer;
+  border: 2px solid hsla(var(--hue), var(--saturation), var(--lightness), 1);
+  position: relative;
+}
+.main .championships .championship .join-championship-btn.animated::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+  border-radius: 50%;
+  animation: showBefor 0s 0.5s forwards, hideBefor 0s 2.75s forwards;
+  z-index: 111;
+}
+@keyframes showBefor {
+  100% {
+    background-color: #ffffff;
+  }
+}
+@keyframes hideBefor {
+  100% {
+    width: 0;
+    height: 0;
+  }
+}
+.main .championships .championship .join-championship-btn.animated {
+  animation: animated 0.25s 0.25s cubic-bezier(0.42, 0, 0.99, 0.04) forwards,
+    animated2 0.25s 2.75s cubic-bezier(0.42, 0, 0.99, 0.04) forwards;
+}
+@keyframes animated {
+  0% {
+    border-color: rgb(204, 204, 204);
+  }
+  100% {
+    width: 1.75rem;
+    height: 1.75rem;
+    background-color: transparent;
+    border-color: #cccccc;
+  }
+}
+@keyframes animated2 {
+  0% {
+  }
+  100% {
+    width: 5.3125rem;
+    height: 1.75rem;
+    background-color: hsla(var(--hue), var(--saturation), var(--lightness), 1);
+    border: none;
+  }
+}
+.main .championships .championship .join-championship-btn.animated span {
+  animation: span-animated 0.2s 0s ease forwards;
+}
+@keyframes span-animated {
+  20% {
+    font-size: 0.9em;
+  }
+  50% {
+    font-size: 1em;
+  }
+  100% {
+    color: transparent;
+    background-color: transparent;
+  }
+}
+
+.main .championships .championship .join-championship-btn.animated div {
+  animation: showDiv 0s 0.5s linear forwards, hideDiv 0s 2.75s forwards;
+}
+@keyframes showDiv {
+  100% {
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+@keyframes hideDiv {
+  100% {
+    width: 0;
+    height: 0;
+  }
+}
+
+.checkmark-svg {
+  position: absolute;
+  width: 16px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  stroke: #ffffff;
+  z-index: 11111111;
+  width: 16px;
+  height: 16px;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+.main
+  .championships
+  .championship
+  .join-championship-btn.animated
+  .checkmark-svg {
+  animation: showsvg 0.5s 3s cubic-bezier(0.42, 0, 0.99, 0.04) forwards;
+}
+@keyframes showsvg {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.main .championships .championship .join-championship-btn.registered {
+  width: 5.3125rem;
+  height: 1.75rem;
+  background-color: hsla(var(--hue), var(--saturation), var(--lightness), 1);
+}
+.main .championships .championship .join-championship-btn.registered span {
+  display: none;
+}
+.main
+  .championships
+  .championship
+  .join-championship-btn.registered
+  .checkmark-svg {
+  stroke-dashoffset: 0;
+}
+
+.main .championships .championship .deadline-time {
+  position: absolute;
+  bottom: var(--padding);
+  left: var(--padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
