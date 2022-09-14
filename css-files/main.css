@@ -783,7 +783,6 @@ header .logo {
   left: 50%;
   transform: translate(-50%,-50%);
   filter: blur(50px);
-  display: none;
 }
 
 .contact-us .container .balls::before{
