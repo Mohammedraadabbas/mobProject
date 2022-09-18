@@ -68,10 +68,21 @@ dots.forEach(function (dot, index) {
   });
 });
 
+
+//header scrolling
+let header = document.querySelector('header')
+window.onscroll = function(){
+  if(scrollY > 70){
+    header.classList.add('active')
+    console.log(scrollY)
+  }else{
+    header.classList.remove('active')
+  }
+}
+
+
+
 // theam mode 
-
-
-
 let switcherModeContainer = document.querySelector(".switcher-mode-container");
 let innerContainer = document.querySelector(".inner-container");
 
