@@ -100,7 +100,7 @@ a {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 9999999;
+  z-index: 9999999999;
 }
 
 .header .container {
@@ -673,7 +673,7 @@ header .logo {
   top: 0;
   opacity: 0;
   transition: 0.5s ease;
-  z-index: 111111111;
+  z-index: 111111;
 }
 
 .member .member-con.active {
@@ -1282,6 +1282,7 @@ header .logo {
   .header .navBar.active {
     transform: translate(0%, 10%);
     opacity: 1;
+    z-index : 999999999
   }
 
   .header .navBar .navList .navItem a {
