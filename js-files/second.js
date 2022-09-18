@@ -175,8 +175,8 @@ startFilteringBtn.addEventListener("click", function () {
 
 function cardsfiltering(options) {
   let cards = Array.from(document.querySelectorAll(".card"));
+  const state = Flip.getState(cards)
   cards.forEach((card) => {
-    const state = Flip.getState(cards)
     
     if (
       card.classList.contains(options[0]) && (card.classList.contains(options[1]) || card.classList.contains(options[2]))
@@ -186,16 +186,17 @@ function cardsfiltering(options) {
     } else {
       card.style.display = "none";
     }
-    Flip.from(state, {
-      duration: 0.7,
-      scale: true,
-      ease: "power1.inOut",
-      stagger: 0.08,
-      absolute: true,
-      onEnter: (elements) => gsap.fromTo(elements, {opacity:0,scale:0}, {opacity:1,scale:1,duration:1}),
-      onLeave:(elements) => gsap.to(elements , {opacity:0,scale:0,duration:1}),
-    })
+
   });
+  Flip.from(state, {
+    duration: 0.7,
+    scale: true,
+    ease: "power1.inOut",
+    stagger: 0.08,
+    absolute: true,
+    onEnter: (elements) => gsap.fromTo(elements, {opacity:0,scale:0}, {opacity:1,scale:1,duration:1}),
+    onLeave:(elements) => gsap.to(elements , {opacity:0,scale:0,duration:1}),
+  })
   filterIcon.classList.remove('active')
   changeFillterIcon()
   filterOptions.classList.remove('active')
