@@ -43,7 +43,7 @@ let optionThree = Array.from(
   )
 );
 
-let iisAdmin = false;
+let isAdmin = false;
 
 // check if the localStorage has the user profile
 if (localStorage.profile) {
