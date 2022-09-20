@@ -298,10 +298,10 @@ function showChampionships(championship) {
   let houCo = document.querySelector(`[data-time="${id}"] .date .hou`)
   let dayCo = document.querySelector(`[data-time="${id}"] .date .day`)
 
-  // let deadline = new Date(data.deadline).getTime()
+  let deadline = new Date(data.deadline).getTime()
 
 
-  let deadline = new Date("Sep 20, 2022 23:59:59").getTime()
+  //let deadline = new Date("Sep 20, 2022 23:59:59").getTime()
   let countdown = setInterval(function () {
     let startingDate = new Date().getTime()
     //The difference between the deadLIne and  starting Date
