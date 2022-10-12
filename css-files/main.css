@@ -985,7 +985,7 @@ header .logo {
 }
 
 .contact-us-form-container .info-container .info {
-  margin-top: 50px;
+  /*margin-top: 50px;*/
   font-size: 1rem;
   display: flex;
   flex-direction: column;
@@ -1549,7 +1549,7 @@ header .logo {
     gap: 16px;
   }
 
-  .contact-us .container .balls {
+  /*.contact-us .container .balls {
     width: 130px;
     height: 130px;
   }
@@ -1565,7 +1565,7 @@ header .logo {
     top: 83%;
     z-index: -1;
   }
-
+*/
   .form button {
     width: 100px;
     height: 35px;
