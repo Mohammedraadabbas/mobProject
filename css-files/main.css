@@ -1391,6 +1391,7 @@ header .logo {
   }
 
   .contact-us-form-container {
+    height:30rem;
     padding: 20px;
     grid-template-columns: 1fr;
     gap: 0;
